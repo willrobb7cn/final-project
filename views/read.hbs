@@ -1,0 +1,22 @@
+<div class="panel">
+
+    <div class="createUser">
+        <h1>Get asset info</h1>
+        <form action="/read" method="POST">
+            <input name="identification" type="number" placeholder="AssetID"></input>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+        <br>
+        <ul>
+
+            {{#each getdata}}
+            <li>{{@key}} : {{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    <br>
+    {{Info}}
+    {{err}}
+</div>

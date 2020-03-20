@@ -1,0 +1,28 @@
+<div class="panel">
+    <div class="createUser">
+        <h1>Create a new asset</h1>
+        <form action='resource' method="POST">
+            <input name="assetID" type="number" placeholder="Asset Number"></input>
+            <br>
+            <input name="serialID" type="text" placeholder="Serial Number"></input>
+            <br>
+            <input name="type" type="text" placeholder="Type"></input>
+            <br>
+            <input name="manufacturer" type="text" placeholder="Manufacturer"></input>
+            <br>
+            <input name="model" type="text" placeholder="Model"></input>
+            <br>
+            <input name="dateOfPurchase" type="date" placeholder="Date Of Purchase"></input>
+            <br>
+            <input name="purchasePrice" type="number" placeholder="Purchase Price"></input>
+            <br>
+            <input name="allocatedTo" type="text" placeholder="Allocated To"></input>
+            <br>
+            <input name="notes" type="text" placeholder="Notes"></input>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+        <h3>{{err}}</h3>
+        <h3>{{added}}</h3>
+    </div>

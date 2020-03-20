@@ -1,0 +1,115 @@
+AWS.config before assume role
+------------------------------------------------------------
+
+Config {
+  credentials: SharedIniFileCredentials {
+    expired: false,
+    expireTime: null,
+    refreshCallbacks: [],
+    accessKeyId: 'AKIAVUB52G3K6FPPG6FW',
+    sessionToken: undefined,
+    filename: undefined,
+    profile: 'default',
+    disableAssumeRole: true,
+    preferStaticCredentials: false,
+    tokenCodeFn: null,
+    httpOptions: null
+  },
+  credentialProvider: CredentialProviderChain {
+    providers: [
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function]
+    ],
+    resolveCallbacks: []
+  },
+  region: undefined,
+  logger: null,
+  apiVersions: {},
+  apiVersion: null,
+  endpoint: undefined,
+  httpOptions: { timeout: 120000 },
+  maxRetries: undefined,
+  maxRedirects: 10,
+  paramValidation: true,
+  sslEnabled: true,
+  s3ForcePathStyle: false,
+  s3BucketEndpoint: false,
+  s3DisableBodySigning: true,
+  s3UsEast1RegionalEndpoint: 'legacy',
+  s3UseArnRegion: undefined,
+  computeChecksums: true,
+  convertResponseTypes: true,
+  correctClockSkew: false,
+  customUserAgent: null,
+  dynamoDbCrc32: true,
+  systemClockOffset: 0,
+  signatureVersion: null,
+  signatureCache: true,
+  retryDelayOptions: {},
+  useAccelerateEndpoint: false,
+  clientSideMonitoring: false,
+  endpointDiscoveryEnabled: false,
+  endpointCacheSize: 1000,
+  hostPrefixEnabled: true,
+  stsRegionalEndpoints: 'legacy'
+}
+Server listening on port3000
+AWS.config after assume role
+------------------------------------------------------------
+
+Config {
+  credentials: Credentials {
+    expired: false,
+    expireTime: null,
+    refreshCallbacks: [],
+    accessKeyId: 'ASIAWT5D5D3IOPVWIT7F',
+    sessionToken: 'FwoGZXIvYXdzEBUaDC9wyriI/11f5MWH9yKwASd8CWO0SkX5/K5SlfDAJ8263HUkfdNF/SdJGcTYH5V9Cx4qAcS5ixhcq8Wf6TWCaMERhIGE8IIeeu6b7Yopln5Ms2XZ2F6F4Ld5Rm0xR9EazmbLj3TB1Nv/qUZb9sGksx3YLvHH0iwg5JJewKJyUnUHEup1FLE7UrLKK+gfCj2xpSqFIzfMB4ToB59q+Bj2JDqgCyn8LvB+r/DDfSc1/RcUHfD2E350V4rjZklGrjjaKJ3U0vMFMi3jMrEj/j7WQsIM2XW48NWrZ9yfL1IqiZD3CHd9cvTt0NBvvSMI6lhNPTHPMVM='
+  },
+  credentialProvider: CredentialProviderChain {
+    providers: [
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function],
+      [Function]
+    ],
+    resolveCallbacks: []
+  },
+  region: 'eu-west-2',
+  logger: null,
+  apiVersions: {},
+  apiVersion: null,
+  endpoint: undefined,
+  httpOptions: { timeout: 120000 },
+  maxRetries: undefined,
+  maxRedirects: 10,
+  paramValidation: true,
+  sslEnabled: true,
+  s3ForcePathStyle: false,
+  s3BucketEndpoint: false,
+  s3DisableBodySigning: true,
+  s3UsEast1RegionalEndpoint: 'legacy',
+  s3UseArnRegion: undefined,
+  computeChecksums: true,
+  convertResponseTypes: true,
+  correctClockSkew: false,
+  customUserAgent: null,
+  dynamoDbCrc32: true,
+  systemClockOffset: 0,
+  signatureVersion: null,
+  signatureCache: true,
+  retryDelayOptions: {},
+  useAccelerateEndpoint: false,
+  clientSideMonitoring: false,
+  endpointDiscoveryEnabled: false,
+  endpointCacheSize: 1000,
+  hostPrefixEnabled: true,
+  stsRegionalEndpoints: 'legacy'
+}

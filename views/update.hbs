@@ -1,0 +1,30 @@
+<div class="panel">
+    <h1>Which asset would you like to Update?</h1>
+    <form action="/updateResource" method="POST">
+        <input name="identification" type="number" placeholder="ID of asset to Update"></input>
+        <br>
+        <br>
+        <h3>Please write correct asset data below...</h3>
+        <br>
+            {{!-- <input name="serialID" type="text" placeholder="Serial Number"></input> --}}
+            {{!-- <br>
+            <input name="type" type="text" placeholder="Type"></input>
+            <br>
+            <input name="manufacturer" type="text" placeholder="Manufacturer"></input>
+            <br> --}}
+            <input name="model" type="text" placeholder="Model"></input>
+            <br>
+            {{!-- <input name="dateOfPurchase" type="date" placeholder="Date Of Purchase"></input>
+            <br>
+            <input name="purchasePrice" type="number" placeholder="Purchase Price"></input>
+            <br>
+            <input name="allocatedTo" type="text" placeholder="Allocated To"></input>
+            <br>
+            <input name="notes" type="text" placeholder="Notes"></input>
+            <br> --}}
+            <br>
+        <button type="submit">Submit</button>
+    </form>
+    {{err}}
+    {{added}}
+</div>

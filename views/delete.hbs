@@ -1,0 +1,13 @@
+<div class="panel">
+    <div>
+        <h1>Delete Asset</h1>
+        <form action="/deleteAsset" method="POST">
+            <input name="identification" type="number" placeholder="AssetID"></input>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+    </div>
+    {{err}}
+    {{added}}
+</div>
