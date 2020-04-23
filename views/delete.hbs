@@ -1,7 +1,7 @@
 <div class="panel">
     <div>
         <h1>Delete Asset</h1>
-        <form action="/deleteAsset" method="POST">
+        <form action="/deleteAsset" method="POST" onsubmit="return confirm('Are you sure you want to delete?');">
             <input name="identification" type="number" placeholder="AssetID"></input>
             <br>
             <br>

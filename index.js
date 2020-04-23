@@ -56,14 +56,14 @@ app.get('/update', (req, res) => {
     res.render('update')
 })
 app.get('/delete', (req, res) => {
-    res.render('delete')
+    res.render('delete',{err: "Please Inpuit the Asset Id of what you would like to delete?"})
 })
 
 
 app.post('/read', (req,res)=>{
     let assetID = req.body.identification
-    console.log(assetID);
-    console.log(req.body)
+    // console.log(assetID);
+    // console.log(req.body)
     let params = {
         TableName: table,
         region: "eu-west-2",
@@ -74,9 +74,12 @@ app.post('/read', (req,res)=>{
 
     
     docClient.get(params, function (err, data) {
+        console.log(params);
+        
         let getdata = data
-        // console.log("yeet")
-        console.log(data)
+        // let arrayData = Object.keys(getdata.Item)
+        // console.log(arrayData.length);
+        
         if (err) {
             console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
             res.render('read', {err: 'Please enter information in all fields'})
@@ -102,7 +105,7 @@ app.post('/update', (req,res)=>{
         TableName: table,
         Item: {
             "serialID": req.body.serialID,
-            "type": req.body.type,
+            "type": req.body.typee,
             "manufacturer": req.body.manufacturer,
             "model": req.body.model,
             "dateOfPurchase": req.body.dateOfPurchase,
@@ -138,7 +141,7 @@ app.post('/resource', (req, res) => { //create resource method (allows us to cre
         Item: {
             "assetID": req.body.assetID,
             "serialID": req.body.serialID,
-            "type": req.body.type,
+            "type": req.body.typee,
             "manufacturer": req.body.manufacturer,
             "model": req.body.model,
             "dateOfPurchase": req.body.dateOfPurchase,
@@ -146,7 +149,7 @@ app.post('/resource', (req, res) => { //create resource method (allows us to cre
             "allocatedTo": req.body.allocatedTo,
             "notes": req.body.notes,
             "dateCreated": date,
-            "lastChanged": date
+            "lastUpdated": date
         }
     }
     docClient.get(params , function (err,data,added){
@@ -171,13 +174,13 @@ app.post('/resource', (req, res) => { //create resource method (allows us to cre
 })
 
 app.post('/deleteAsset',(req,res)=>{
+    
     var params = {
         TableName: table,
         Key: {
             "assetID": req.body.identification
         }
     }
-
     console.log("Attempting a deletion...");
     docClient.delete(params, function (err, data) {
         if (err) {
@@ -189,6 +192,7 @@ app.post('/deleteAsset',(req,res)=>{
             return res.render('delete',{added:'Asset deleted!'})
         }
     });
+// }
 })
 
 
@@ -200,24 +204,23 @@ app.post('/updateResource', (req, res) => {// this lets me update the database w
         Key: {
             "assetID": req.body.identification
         },
-        UpdateExpression: "set lastUpdated= :a, model= :b",
-        // , serialID= :c, type= :d, manufacturer= :e, dateOfPurchase= :f, purchasePrice= :g, allocatedTo= :h, notes= :i ",
+        UpdateExpression: "set lastUpdated= :a, model= :b, serialID= :c, typee= :d, manufacturer= :e, dateOfPurchase= :f, purchasePrice= :g, allocatedTo= :h, notes= :i ",
         ExpressionAttributeValues: {
             ":a": date,
             ":b": req.body.model,
-            // ":c": req.body.serialID,
-            // ":d": req.body.type,
-            // ":e": req.body.manufacturer,
-            // ":f": req.body.dateOfPurchase,
-            // ":g": req.body.purchasePrice,
-            // ":h": req.body.allocatedTo,
-            // ":i": req.body.notes
+            ":c": req.body.serialID,
+            ":d": req.body.typee,
+            ":e": req.body.manufacturer,
+            ":f": req.body.dateOfPurchase,
+            ":g": req.body.purchasePrice,
+            ":h": req.body.allocatedTo,
+            ":i": req.body.notes
             //create for each thing i can update
         },
         ReturnValues: "UPDATED_NEW"
     }
     console.log("Params: ");
-    console.log(params);
+    console.log(params.Key.assetID);
 
 
     console.log("Updating the item...");
@@ -227,63 +230,13 @@ app.post('/updateResource', (req, res) => {// this lets me update the database w
             res.render('update', {err: 'Unable to update item.'})
         } else {
             console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
-            return res.status(200).send({added: 'Item Updated!'})
+            // return res.status(200).send({added: 'Item Updated!'})
+            res.render('update', {err: 'Item Updated!'})
 
 
         }
     });
 })
-// app.put('/resource', (req, res) => {// this lets me update the database with things that can change- it will also change the lastupdated section of the
-//     var date = new Date().toISOString()
-
-//     var params = {
-//         TableName: table,
-//         Key: {
-//             "assetID": req.query.id
-//         },
-//         UpdateExpression: "set lastUpdated= :a, model= :b",
-//         ExpressionAttributeValues: {
-//             ":a": date,
-//             ":b": req.body.model
-//             //create for each thing i can update
-//         },
-//         ReturnValues: "UPDATED_NEW"
-//     }
-//     console.log("Params: ");
-//     console.log(params);
-
-
-//     console.log("Updating the item...");
-//     docClient.update(params, function (err, data) {
-//         if (err) {
-//             console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
-//         } else {
-//             console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
-//             return res.status(200).send(JSON.stringify(data, null, 2));
-
-//         }
-//     });
-// })
-
-// app.delete('/resource', (req, res) => {
-//     var params = {
-//         TableName: table,
-//         Key: {
-//             "assetID": req.query.id
-//         }
-//     }
-
-//     console.log("Attempting a deletion...");
-//     docClient.delete(params, function (err, data) {
-//         if (err) {
-//             console.error("Unable to delete item. Error JSON:", JSON.stringify(err, null, 2));
-//         } else {
-//             console.log("DeleteItem succeeded:", JSON.stringify(data, null, 2));
-//             return res.sendStatus(204)
-//         }
-//     });
-// })
-
 
 app.listen(3000, () => {
     console.log('Server listening on port3000');
